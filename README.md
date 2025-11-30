@@ -2,6 +2,10 @@
 
 Reusable Nix helpers for development environments and CI/CD.
 
+## Disclaimer
+
+This repository is primarily for my personal use. While you're welcome to use it, I take no responsibility for issues caused by this code. Use at your own risk.
+
 ## Usage
 
 ### Standard Import (Recommended)
