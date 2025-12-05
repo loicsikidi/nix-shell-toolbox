@@ -9,8 +9,8 @@ in
       # Common hooks
       end-of-file-fixer.enable = true;
 
-      # Nix hooks
-      nixfmt-classic.enable = true;
+      # Nix formatting and linting
+      alejandra.enable = true;
 
       # Golang hooks
       gofmt.enable = true;
