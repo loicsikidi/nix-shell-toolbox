@@ -29,6 +29,10 @@ pkgs.mkShell {
 }
 ```
 
+> [!TIP]
+> `builtins.fetchTarball` caches tarballs in `~/.cache/nix/tarballs/`.
+> If your local nix-shell doesn't detect remote changes, force refresh with: `rm -rf ~/.cache/nix/tarballs/`
+
 ### Pinned Import (Critical Projects)
 
 For projects requiring something stable, pin to a specific release.
