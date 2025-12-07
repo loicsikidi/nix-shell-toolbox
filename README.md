@@ -18,7 +18,7 @@ let
     builtins.fetchTarball "https://github.com/loicsikidi/nix-shell-toolbox/tarball/main"
   ) {
     inherit pkgs;
-    enabled = {
+    toolboxConfig = {
       check-workflows = false;
     };
   };
@@ -55,15 +55,69 @@ All tools are enabled by default:
 - `lint` - Run golangci-lint
 - `check-workflows` - Scan GitHub Actions with zizmor
 
+## Configuration
+
+### Disabling Tools
+
+Use the `toolboxConfig` parameter to disable specific toolbox commands:
+
+```nix
+let
+  helpers = import (
+    builtins.fetchTarball "https://github.com/loicsikidi/nix-shell-toolbox/tarball/main"
+  ) {
+    inherit pkgs;
+    toolboxConfig = {
+      check-workflows = false;
+    };
+  };
+in
+pkgs.mkShell {
+  buildInputs = [ pkgs.go ] ++ helpers.packages;
+  shellHook = helpers.shellHook;
+}
+```
+
+### Customizing Pre-commit Hooks
+
+Use the `hooksConfig` parameter to customize or disable pre-commit hooks:
+
+```nix
+let
+  helpers = import (
+    builtins.fetchTarball "https://github.com/loicsikidi/nix-shell-toolbox/tarball/main"
+  ) {
+    inherit pkgs;
+    hooksConfig = {
+      # Disable specific hooks
+      gofmt.enable = false;
+      zizmor.enable = false;
+
+      # Add custom flags to gotest
+      gotest.settings.flags = "-tags integration -short";
+
+      # Change golangci-lint stage
+      golangci-lint.stages = ["pre-commit"];
+    };
+  };
+in
+pkgs.mkShell {
+  buildInputs = [ pkgs.go ] ++ helpers.packages;
+  shellHook = helpers.shellHook;
+}
+```
+
 ### Pre-commit Hooks
 
 > [!NOTE]
 > Pre-push hooks are deferred due to execution time
 
+Available hooks to configure via `hooksConfig`:
+
 | Hook | Stage | Description |
 |------|-------|-------------|
 | end-of-file-fixer | pre-commit | Ensures files end with newline |
-| nixfmt-classic | pre-commit | Format Nix files |
+| alejandra | pre-commit | Format Nix files |
 | gofmt | pre-commit | Format Go code |
 | golangci-lint | **pre-push** | Lint Go code |
 | gotest | **pre-push** | Run Go tests |

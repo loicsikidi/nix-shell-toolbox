@@ -1,4 +1,4 @@
-{ pkgs ? import <nixpkgs> { }, enabled ? { } }:
+{ pkgs ? import <nixpkgs> { }, enabled ? { }, toolboxConfig ? enabled }:
 
 let
   # Default configuration - all tools enabled by default
@@ -9,7 +9,7 @@ let
   };
 
   # Merge user config with defaults
-  config = defaultEnabled // enabled;
+  config = defaultEnabled // toolboxConfig;
 
   # All available tools
   allTools = {

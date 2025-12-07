@@ -1,8 +1,8 @@
-{ pkgs ? import <nixpkgs> { }, enabled ? { } }:
+{ pkgs ? import <nixpkgs> { }, toolboxConfig ? { }, hooksConfig ? { } }:
 
 let
-  toolbox = import ./nix/toolbox { inherit pkgs enabled; };
-  pre-commit = import ./nix/pre-commit.nix { inherit pkgs; };
+  toolbox = import ./nix/toolbox { inherit pkgs; enabled = toolboxConfig; };
+  pre-commit = import ./nix/pre-commit.nix { inherit pkgs hooksConfig; };
 in
 {
   # All packages (toolbox + pre-commit)
