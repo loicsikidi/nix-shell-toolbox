@@ -1,6 +1,7 @@
 {pkgs, ...}: let
   nix-pre-commit-hooks = import (
-    builtins.fetchTarball "https://github.com/cachix/git-hooks.nix/tarball/master"
+    # Pin to a specific commit to avoid regression introduced by https://github.com/cachix/git-hooks.nix/pull/664
+    builtins.fetchTarball "https://github.com/cachix/git-hooks.nix/tarball/50b9238891e388c9fdc6a5c49e49c42533a1b5ce"
   );
 in
   nix-pre-commit-hooks.run {
