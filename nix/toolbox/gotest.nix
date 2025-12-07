@@ -33,11 +33,13 @@ pkgs.writeShellApplication {
 
     if [ "$RACE" = true ]; then
       RACE_FLAG="-race"
+      COVERMODE="atomic"
     else
       RACE_FLAG=""
+      COVERMODE="count"
     fi
 
-    if ! go test $SHORT_FLAG $RACE_FLAG -count=1 -failfast -covermode=count -coverprofile=coverage.out -v "''${paths[@]}"; then
+    if ! go test $SHORT_FLAG $RACE_FLAG -count=1 -failfast -covermode=$COVERMODE -coverprofile=coverage.out -v "''${paths[@]}"; then
       echo "tests failed ⛔"
       exit 1
     fi
