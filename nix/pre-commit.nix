@@ -43,6 +43,27 @@
       enable = true;
       package = pkgs.zizmor;
     };
+
+    # Custom hooks dedicated to tpm-ca-certificates repo
+    tpmtb-format = {
+      enable = false;
+      name = "tpmtb Config Format";
+      description = "Check tpmtb Config files formatting";
+      files = "^\\.tpm-(roots|intermediates)\\.yaml$";
+      entry = "${pkgs.go}/bin/go run ./ config format --dry-run --config";
+      language = "system";
+      pass_filenames = true;
+    };
+
+    tpmtb-validate = {
+      enable = false;
+      name = "tpmtb Config Validate";
+      description = "Validate tpmtb Config files";
+      files = "^\\.tpm-(roots|intermediates)\\.yaml$";
+      entry = "${pkgs.go}/bin/go run ./ config validate --config";
+      language = "system";
+      pass_filenames = true;
+    };
   };
 
   # Merge user config with defaults, with user config taking precedence
