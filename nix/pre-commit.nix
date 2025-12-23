@@ -5,8 +5,7 @@
 }: let
   nix-pre-commit-hooks = import (
     # Pin to a specific commit to avoid regression introduced by https://github.com/cachix/git-hooks.nix/pull/664
-    # builtins.fetchTarball "https://github.com/cachix/git-hooks.nix/tarball/50b9238891e388c9fdc6a5c49e49c42533a1b5ce"
-    builtins.fetchTarball "https://github.com/loicsikidi/git-hooks.nix/tarball/5d5248b363ef7ea9bde401601c2042719ead74f1"
+    builtins.fetchTarball "https://github.com/cachix/git-hooks.nix/tarball/50b9238891e388c9fdc6a5c49e49c42533a1b5ce"
   );
 
   # Default configuration for all hooks
