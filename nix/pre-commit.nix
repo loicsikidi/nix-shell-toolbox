@@ -38,6 +38,12 @@
       extraPackages = with pkgs; [go openssl gcc];
     };
 
+    # link checker
+    lychee = {
+      enable = true;
+      package = pkgs.lychee;
+    };
+
     # Zizmor hook for GitHub workflow security scanning
     zizmor = {
       enable = true;
