@@ -43,7 +43,7 @@
     lychee = {
       enable = true;
       package = pkgs.lychee;
-      pass_filenames = true;
+      pass_filenames = false;
     };
 
     # Zizmor hook for GitHub workflow security scanning
