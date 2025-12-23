@@ -44,6 +44,7 @@
       package = pkgs.lychee;
       settings.flags = "."; # Check all files
       pass_filenames = false;
+      stages = ["pre-push"];
     };
 
     # Zizmor hook for GitHub workflow security scanning
