@@ -9,7 +9,8 @@
     toolbox
     ++ pre-commit.enabledPackages
     ++ [
-      pkgs.delve
+      pkgs.buf # manage protobuf
+      pkgs.delve # debugger
     ];
 in {
   # All packages (toolbox + pre-commit)

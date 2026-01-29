@@ -4,9 +4,10 @@
 }: let
   # Default configuration - all tools enabled by default
   defaultConfig = {
+    check-workflows = true;
     gotest = true;
     lint = true;
-    check-workflows = true;
+    genproto = true;
   };
 
   # Merge user config with defaults
@@ -14,6 +15,7 @@
 
   # All available tools
   allTools = {
+    genproto = import ./genproto.nix {inherit pkgs;};
     gotest = import ./gotest.nix {inherit pkgs;};
     lint = import ./lint.nix {inherit pkgs;};
     check-workflows = import ./zizmor.nix {inherit pkgs;};
