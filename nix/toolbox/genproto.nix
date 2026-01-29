@@ -18,7 +18,7 @@ pkgs.writeShellApplication {
       esac
     done
 
-    buf generate --template $TEMPLATE .
+    buf generate --template "${TEMPLATE}" .
     if [ $? -ne 0 ]; then
        echo "proto generate failed ⛔"
        exit 1
