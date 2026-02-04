@@ -15,11 +15,6 @@
       enable = true;
     };
 
-    # Nix formatting and linting
-    alejandra = {
-      enable = true;
-    };
-
     # Golang hooks
     gofmt = {
       enable = true;
@@ -45,6 +40,21 @@
       settings.flags = "."; # Check all files
       pass_filenames = false;
       stages = ["pre-push"];
+    };
+
+    # formatter
+    treefmt = {
+      # this is disabled by default until all projects have adopted treefmt
+      enable = false;
+      package = pkgs.treefmt;
+      settings = {
+        formatters = [
+          pkgs.alejandra
+          pkgs.gofmt
+          pkgs.buf
+          pkgs.yamlfmt
+        ];
+      };
     };
 
     # Zizmor hook for GitHub workflow security scanning
