@@ -50,8 +50,8 @@
       settings = {
         formatters = [
           pkgs.alejandra
-          pkgs.gofmt
           pkgs.buf
+          pkgs.go
           pkgs.yamlfmt
         ];
       };
